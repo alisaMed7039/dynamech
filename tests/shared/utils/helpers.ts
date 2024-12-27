@@ -1,10 +1,10 @@
-/** utils for async operations **/
 // @ts-ignore
 import path from 'path';
 // @ts-ignore
 import fs from 'fs';
 import { logger } from '../logs.config';
-import { faker } from '@faker-js/faker';
+
+/** utils for async operations **/
 
 export const sleep = async (s: number) =>
   new Promise((resolve) => setTimeout(resolve, Math.round(1000 * s)));

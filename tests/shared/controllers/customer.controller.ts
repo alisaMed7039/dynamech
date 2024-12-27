@@ -5,7 +5,6 @@ import {
   DEFAULT_REGISTERED_USER,
   TEST_EMAIL_DOMAIN,
 } from '../models/customer.model';
-import { logger } from '../logs.config';
 import { AuthApi } from '../api/auth.api';
 import { CustomerCredentials } from '../types-from-app';
 

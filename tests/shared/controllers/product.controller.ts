@@ -1,6 +1,5 @@
 import { DEFAULT_PRODUCT_NUMBERS_LIST, ProductModel } from '../models/product.model';
 import { randomElement, randomElements } from '../utils/helpers';
-import { logger } from '../logs.config';
 import { Builder } from 'builder-pattern';
 import { faker } from '@faker-js/faker';
 

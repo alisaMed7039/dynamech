@@ -1,4 +1,4 @@
-import { type Page, type Locator, FrameLocator, expect, BrowserContext } from '@playwright/test';
+import { type Page, type Locator, expect, BrowserContext } from '@playwright/test';
 import { BasePage } from '../base.page';
 import { PageRoutes } from '../../pageRoutes';
 import { logger } from '../../../shared/logs.config';

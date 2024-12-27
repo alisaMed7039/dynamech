@@ -7,8 +7,6 @@ import { test_config } from '../../shared/test.config';
 import { StorageState } from '../types';
 import { LOCALSTORAGE_FIELDS_FOR_AVOID__BANNER } from '../../shared/models/customer.model';
 
-const delay = 3;
-
 type Fixtures = {
   // Fixtures:
   getUserEnvironment: any;

@@ -1,6 +1,5 @@
 import { Builder } from 'builder-pattern';
 import { faker } from '@faker-js/faker';
-import { logger } from '../logs.config';
 import { AddressModel, DEFAULT_COUNTRIES } from '../models/address.model';
 import { randomElement } from '../utils/helpers';
 
