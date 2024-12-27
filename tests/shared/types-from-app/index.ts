@@ -1,1 +1,1 @@
-export * from "./schemaDynamechApi";
+export * from './schemaDynamechApi';

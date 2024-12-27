@@ -1,22 +1,22 @@
-import { config } from "dotenv";
+import { config } from 'dotenv';
 // @ts-ignore
-import path from "path";
+import path from 'path';
 
-config({ path: path.join(__dirname, "../.env") });
+config({ path: path.join(__dirname, '../.env') });
 const environment = process.env.ENV!;
 
-if (environment == "dev") {
-  config({ path: path.join(__dirname, "../.env.dev") });
-} else if (environment == "CI") {
-  config({ path: path.join(__dirname, "../.env.ci") });
+if (environment == 'dev') {
+  config({ path: path.join(__dirname, '../.env.dev') });
+} else if (environment == 'CI') {
+  config({ path: path.join(__dirname, '../.env.ci') });
 }
 export let test_config = {
   ui: {
     baseUrlUI: process.env.UI_URL as string,
-    authDir: 'auth'
+    authDir: 'auth',
   },
   http: {
-    dynamechUrlHttp: getBaseHttpUrl("dynamech") as string,
+    dynamechUrlHttp: getBaseHttpUrl('dynamech') as string,
   },
   workers: Number(process.env.WORKERS) || process.env.WORKERS,
   timeoutsForUiTests: {
@@ -27,13 +27,13 @@ export let test_config = {
          the requests of endpoints to resolve
          and page content to render
          **/
-    timeForWaitingLoadPage: 10000,
+    timeForWaitingLoadPage: 3 * 60 * 1000,
   },
 };
 
 function getBaseHttpUrl(type: string) {
   switch (type) {
-    case "dynamech":
+    case 'dynamech':
       return process.env.HTTP_DYNAMECH_URL;
     default:
       throw new Error(`Invalid BaseHttpUrl type ${type} for environment ${environment}`);

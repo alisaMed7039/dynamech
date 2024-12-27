@@ -1,7 +1,7 @@
-import {Page} from "@playwright/test";
-import { test_config } from "../../shared/test.config";
-import { PageRoutes } from "../pageRoutes";
-import {BaseComponent} from "./baseComponent.page";
+import { Page } from '@playwright/test';
+import { test_config } from '../../shared/test.config';
+import { PageRoutes } from '../pageRoutes';
+import { BaseComponent } from './baseComponent.page';
 
 export abstract class BasePage extends BaseComponent {
   page: Page;
@@ -15,7 +15,7 @@ export abstract class BasePage extends BaseComponent {
 
   async reload() {
     await this.page.reload();
-    await this.loadedPage();
+    await this.fullyLoadedPage();
   }
 
   getURL() {
@@ -24,8 +24,8 @@ export abstract class BasePage extends BaseComponent {
 
   async goToPageURL(urlPage: string) {
     await this.page.goto(urlPage);
-    await this.loadedPage();
+    await this.fullyLoadedPage();
   }
 
-  abstract route: Exclude<keyof typeof PageRoutes, "prototype">;
+  abstract route: Exclude<keyof typeof PageRoutes, 'prototype'>;
 }

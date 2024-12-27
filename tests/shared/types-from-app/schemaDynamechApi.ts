@@ -12,24 +12,24 @@ export interface CustomerCredentials {
 
 export interface Product {
   productMpn: string;
-  quantity: number
+  quantity: number;
 }
 
 export type Country = {
   name: string;
   code: string;
   europeanUnion: boolean;
-}
+};
 
 export interface Address {
-  "country": Country,
-  "firstName": string,
-  "lastName": string,
-  "addressLine1": string,
-  "city": string,
-  "zip": string,
-  "phone": string,
-  "companyName": string,
-  "companyVat": string,
-  "companyReg": string,
+  country: Country;
+  firstName: string;
+  lastName: string;
+  addressLine1: string;
+  city: string;
+  zip: string;
+  phone: string;
+  companyName: string;
+  companyVat: string;
+  companyReg: string;
 }

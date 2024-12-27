@@ -1,10 +1,10 @@
 /** utils for async operations **/
 // @ts-ignore
-import path from "path";
+import path from 'path';
 // @ts-ignore
-import fs from "fs";
-import {logger} from "../logs.config";
-import {faker} from "@faker-js/faker";
+import fs from 'fs';
+import { logger } from '../logs.config';
+import { faker } from '@faker-js/faker';
 
 export const sleep = async (s: number) =>
   new Promise((resolve) => setTimeout(resolve, Math.round(1000 * s)));
@@ -12,9 +12,7 @@ export const sleep = async (s: number) =>
 /** utils for generation unique id **/
 
 export const generateUniqueId = (): number => {
-  const workerNumber = process.env.TEST_PARALLEL_INDEX
-    ? process.env.TEST_PARALLEL_INDEX
-    : "0";
+  const workerNumber = process.env.TEST_PARALLEL_INDEX ? process.env.TEST_PARALLEL_INDEX : '0';
   const uniqueId = Math.floor(Date.now() % 1000000000);
   const workerUniqueId = uniqueId + Number(workerNumber) * 100000000;
   return Math.floor(workerUniqueId % 1000000000);
@@ -25,16 +23,19 @@ export const generateUniqueId = (): number => {
 type EnumKeyList<T> = (keyof T)[];
 type EnumValuesList<T> = T[keyof T][];
 
-export function enumToArray<T>(enumObject: T, keysOrValues: string): EnumKeyList<T> | EnumValuesList<T> {
+export function enumToArray<T>(
+  enumObject: T,
+  keysOrValues: string,
+): EnumKeyList<T> | EnumValuesList<T> {
   const array = Object.keys(enumObject);
   const resultLength = array.length / 2;
   switch (keysOrValues) {
-    case "keys":
-      return array.slice(resultLength, resultLength * 2) as EnumKeyList<T>
-    case "values":
-      return array.slice(0, resultLength) as EnumValuesList<T>
+    case 'keys':
+      return array.slice(resultLength, resultLength * 2) as EnumKeyList<T>;
+    case 'values':
+      return array.slice(0, resultLength) as EnumValuesList<T>;
     default:
-      throw new Error("Unknown keysOrValues");
+      throw new Error('Unknown keysOrValues');
   }
 }
 
@@ -49,7 +50,7 @@ export function randomElements<T>(list: T[], amountOfItems: number = list.length
   if (amountOfItems == list.length) return list;
   if (amountOfItems > list.length)
     throw new Error(
-        `amountOfItems > array.length (amountOfItems = ${amountOfItems} ; array.length  = ${list.length})`,
+      `amountOfItems > array.length (amountOfItems = ${amountOfItems} ; array.length  = ${list.length})`,
     );
 
   let enabledOptions = new Array(...list);
@@ -67,8 +68,8 @@ export function randomElements<T>(list: T[], amountOfItems: number = list.length
 /** utils with files **/
 
 export async function readDataFromFile(
-    pathToFile: string,
-    isAbsolute: boolean = false,
+  pathToFile: string,
+  isAbsolute: boolean = false,
 ): Promise<any> {
   let dataFromFile: any;
   const additionalPath = {
@@ -86,12 +87,18 @@ export async function readDataFromFile(
   logger.info(`__dirname: ${__dirname}`);
   const fsPromises = fs.promises;
   return await fsPromises
-      .readFile(formatedPath, { encoding: 'utf8' })
-      .then((data) => {
-        dataFromFile = JSON.parse(data);
-        return dataFromFile;
-      })
-      .catch(() => {
-        throw new Error('File does not exist');
-      });
+    .readFile(formatedPath, { encoding: 'utf8' })
+    .then((data) => {
+      dataFromFile = JSON.parse(data);
+      return dataFromFile;
+    })
+    .catch(() => {
+      throw new Error('File does not exist');
+    });
+}
+
+/** Utils with String and RegExp **/
+
+export function escapeRegExp(str: string): string {
+  return str.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, '\\$&');
 }
